@@ -1,7 +1,7 @@
 import { and, eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { borrowTable, usersTable, booksTable } from "@/lib/schema";
-import { BorrowPayload } from "./types";
+import { BorrowPayload } from "@/lib/types";
 
 export async function listBorrows() {
   return await db

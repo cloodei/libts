@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { booksTable } from "@/lib/schema";
-import { BookPayload } from "./types";
+import { BookPayload } from "@/lib/types";
 
 export async function listBooks() {
   return await db.select().from(booksTable)
