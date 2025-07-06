@@ -10,10 +10,12 @@
     "drizzle-orm": "^0.44.2",
     "elysia": "latest",
     "express": "^5.1.0",
+    "hono": "^4.8.4",
     "postgres": "^3.4.7",
     "zod": "^3.25.74"
   },
   "devDependencies": {
+    "@types/pg": "^8.15.4",
     "bun-types": "latest",
     "drizzle-kit": "^0.31.4"
   },

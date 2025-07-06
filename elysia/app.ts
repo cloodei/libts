@@ -4,8 +4,7 @@ import * as books from "./books";
 import * as borrow from "./borrow";
 
 export default function main() {
-  new Elysia()
-    .get("/", () => "Hello Elysia")
+  new Elysia({ precompile: true, prefix: "/api" })
     .get("/users", users.listUsers())
     .get("/users/:id", async ({ params }) => await users.listUser(Number(params.id)))
     .post("/users", async ({ body }) => await users.createUser(body), {
@@ -57,5 +56,5 @@ export default function main() {
         borrow_date: t.String()
       })
     })
-    .listen(process.env.PORT || 3000);
+    .listen({ port: 8080, hostname: "0.0.0.0" });
 }
