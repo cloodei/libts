@@ -1,0 +1,24 @@
+import { db } from "./db";
+import { booksTable } from "./schema";
+import { eq } from "drizzle-orm";
+import { BookPayload } from "./types";
+
+export async function listBooks() {
+  return await db.select().from(booksTable)
+}
+
+export async function listBook(id: number) {
+  return await db.select().from(booksTable).where(eq(booksTable.id, id))
+}
+
+export async function createBook({ title, author, content, category, publish_date }: BookPayload) {
+  return await db.insert(booksTable).values({ title, author, content, category, publish_date })
+}
+
+export async function updateBook(id: number, { title, author, content, category, publish_date }: BookPayload) {
+  return await db.update(booksTable).set({ title, author, content, category, publish_date }).where(eq(booksTable.id, id))
+}
+
+export async function deleteBook(id: number) {
+  return await db.delete(booksTable).where(eq(booksTable.id, id))
+}
