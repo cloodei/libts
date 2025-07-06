@@ -1,6 +1,6 @@
-import { db } from "./db";
-import { booksTable } from "./schema";
 import { eq } from "drizzle-orm";
+import { db } from "@/lib/db";
+import { booksTable } from "@/lib/schema";
 import { BookPayload } from "./types";
 
 export async function listBooks() {

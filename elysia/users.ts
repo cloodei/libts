@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
-import { db } from "./db";
-import { usersTable } from "./schema";
+import { db } from "@/lib/db";
+import { usersTable } from "@/lib/schema";
 import { UserPayload } from "./types";
 
 export async function listUsers() {

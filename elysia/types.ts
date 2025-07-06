@@ -11,3 +11,9 @@ export type BookPayload = {
   category: string;
   publish_date: string;
 }
+
+export type BorrowPayload = {
+  user_id: number;
+  book_id: number;
+  borrow_date: string;
+}
