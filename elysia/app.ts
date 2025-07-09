@@ -6,7 +6,7 @@ import * as borrow from "./borrow";
 export default function main() {
   new Elysia({ precompile: true, prefix: "/api" })
     .get("/users", users.listUsers())
-    .get("/users/:id", async ({ params }) => (await users.listUser(Number(params.id)))[0])
+    .get("/users/:id", async ({ params }) => await users.listUser(Number(params.id)))
     .post("/users", async ({ body }) => await users.createUser(body), {
       body: t.Object({
         name: t.String(),
@@ -24,7 +24,7 @@ export default function main() {
     .delete("/users/:id", async ({ params }) => await users.deleteUser(Number(params.id)))
   
     .get("/books", books.listBooks())
-    .get("/books/:id", async ({ params }) => (await books.listBook(Number(params.id)))[0])
+    .get("/books/:id", async ({ params }) => await books.listBook(Number(params.id)))
     .post("/books", async ({ body }) => await books.createBook(body), {
       body: t.Object({
         title: t.String(),

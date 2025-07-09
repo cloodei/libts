@@ -2,13 +2,20 @@ import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { booksTable } from "@/lib/schema";
 import { BookPayload } from "@/lib/types";
+import { redis } from "@/lib/db";
 
 export async function listBooks() {
   return await db.select().from(booksTable)
 }
 
 export async function listBook(id: number) {
-  return await db.select().from(booksTable).where(eq(booksTable.id, id))
+  const book = await redis.get("books:" + id)
+  if (book)
+    return book
+
+  const [data] = await db.select().from(booksTable).where(eq(booksTable.id, id))
+  redis.set("books:" + id, data, { ex: 60 * 60 })
+  return data
 }
 
 export async function createBook({ title, author, content, category, publish_date }: BookPayload) {
