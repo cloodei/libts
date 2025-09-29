@@ -13,7 +13,7 @@ export async function listBorrows(req: Request, res: Response) {
     .innerJoin(usersTable, eq(borrowTable.user_id, usersTable.id))
     .innerJoin(booksTable, eq(borrowTable.book_id, booksTable.id))
 
-  return res.json(borrows)
+  res.json(borrows)
 }
 
 export async function listBorrow(req: Request, res: Response) {
@@ -27,7 +27,7 @@ export async function listBorrow(req: Request, res: Response) {
     .innerJoin(booksTable, eq(borrowTable.book_id, booksTable.id))
     .where(and(eq(borrowTable.user_id, Number(req.params.user_id)), eq(borrowTable.book_id, Number(req.params.book_id))))
 
-  return res.json(borrow)
+  res.json(borrow)
 }
 
 export async function listBorrowByBookID(req: Request, res: Response) {
@@ -41,7 +41,7 @@ export async function listBorrowByBookID(req: Request, res: Response) {
     .innerJoin(booksTable, eq(borrowTable.book_id, booksTable.id))
     .where(eq(borrowTable.book_id, Number(req.params.book_id)))
 
-  return res.json(borrow)
+  res.json(borrow)
 }
 
 export async function listBorrowByUserID(req: Request, res: Response) {
@@ -55,12 +55,12 @@ export async function listBorrowByUserID(req: Request, res: Response) {
     .innerJoin(booksTable, eq(borrowTable.book_id, booksTable.id))
     .where(eq(borrowTable.user_id, Number(req.params.user_id)))
 
-  return res.json(borrow)
+  res.json(borrow)
 }
 
 export async function createBorrow(req: Request, res: Response) {
   const { user_id, book_id, borrow_date } = req.body
   await db.insert(borrowTable).values({ user_id, book_id, borrow_date })
 
-  return res.status(201).json("OK")
+  res.status(201).json("OK")
 }

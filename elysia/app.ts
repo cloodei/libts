@@ -5,7 +5,7 @@ import * as borrow from "./borrow";
 
 export default function main() {
   new Elysia({ precompile: true, prefix: "/api" })
-    .get("/users", users.listUsers())
+    .get("/users", users.listUsers)
     .get("/users/:id", async ({ params }) => await users.listUser(Number(params.id)))
     .post("/users", async ({ body }) => await users.createUser(body), {
       body: t.Object({
@@ -23,7 +23,7 @@ export default function main() {
     })
     .delete("/users/:id", async ({ params }) => await users.deleteUser(Number(params.id)))
   
-    .get("/books", books.listBooks())
+    .get("/books", books.listBooks)
     .get("/books/:id", async ({ params }) => await books.listBook(Number(params.id)))
     .post("/books", async ({ body }) => await books.createBook(body), {
       body: t.Object({
@@ -45,7 +45,7 @@ export default function main() {
     })
     .delete("/books/:id", async ({ params }) => await books.deleteBook(Number(params.id)))
   
-    .get("/borrows", borrow.listBorrows())
+    .get("/borrows", borrow.listBorrows)
     .get("/borrows/:user_id/:book_id", async ({ params }) => (await borrow.listBorrowByID(Number(params.user_id), Number(params.book_id)))[0])
     .get("/borrows/books/:user_id", async ({ params }) => await borrow.listBorrowByUserID(Number(params.user_id)))
     .get("/borrows/users/:book_id", async ({ params }) => await borrow.listBorrowByBookID(Number(params.book_id)))

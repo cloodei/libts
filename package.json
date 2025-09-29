@@ -1,8 +1,6 @@
 {
   "name": "elysia",
-  "version": "1.0.50",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch ./index.ts",
     "start": "bun run ./index.ts"
   },
@@ -23,6 +21,5 @@
     "@types/table": "^6.3.2",
     "bun-types": "latest",
     "drizzle-kit": "^0.31.4"
-  },
-  "module": "./index.ts"
+  }
 }
