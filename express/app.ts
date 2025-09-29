@@ -20,9 +20,9 @@ export default function main() {
   app.delete("/api/books/:id", books.deleteBook);
 
   app.get("/api/borrows", borrow.listBorrows);
-  app.get("/api/borrows/:user_id/:book_id", borrow.listBorrow);
   app.get("/api/borrows/users/:book_id", borrow.listBorrowByBookID);
   app.get("/api/borrows/books/:user_id", borrow.listBorrowByUserID);
+  app.get("/api/borrows/:user_id/:book_id", borrow.listBorrow);
   app.post("/api/borrows", borrow.createBorrow);
 
   app.listen(8080);
